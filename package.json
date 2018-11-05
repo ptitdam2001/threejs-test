@@ -1,0 +1,16 @@
+{
+  "name": "threejs-test",
+  "version": "1.0.0",
+  "description": "Test the three.js library",
+  "main": "index.js",
+  "repository": "git@github.com:ptitdam2001/threejs-test.git",
+  "author": "Damien Suhard <ptitdam2001@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.98.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.25.0",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
