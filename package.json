@@ -7,12 +7,15 @@
   "author": "Damien Suhard <ptitdam2001@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "orbit-controls-es6": "^2.0.0",
     "three": "^0.98.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "raw-loader": "^0.5.1",
     "webpack": "^4.25.0",

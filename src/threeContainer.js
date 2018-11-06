@@ -13,7 +13,7 @@ export class ThreeContainer {
 
     add(object) {
         this._scene.add(object);
-        this._camera.position.z = 5;
+        // this._camera.position.z = 5;
     }
 
     animate( animations = () => {} ) {
@@ -26,7 +26,7 @@ export class ThreeContainer {
 	    this._renderer.render( this._scene, this._camera );
     }
 
-    getRenderer() {
-        return this._renderer;
+    getDomRender() {
+        return this._renderer.domElement;
     }
 }

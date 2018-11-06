@@ -1,18 +1,52 @@
-import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
-import { Cube } from './src/cube';
-import { ThreeContainer} from './src/threeContainer';
+import * as THREE  from 'three';
+import OrbitControls from 'orbit-controls-es6';
 
-var scene = new Scene();
-var camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 78, window.innerWidth / window.innerHeight, 0.1, 1200 );
 
-const cube = new Cube();
+const controls = new OrbitControls(camera);
+controls.enableZoom = false;
+controls.maxDistance = 1000;
+controls.minDistance = 0;
+// controls.autoRotate = true;
+controls.rotateSpeed = 0.2;
 
-const renderer = new ThreeContainer(scene, camera);
+camera.position.set(-1, 0, 0);
+controls.update();
 
-renderer.add(cube);
-renderer.animate(() => {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-});
+// sphere
+const geometry = new THREE.SphereGeometry( 1200, 32, 32 );
 
-document.body.appendChild( renderer.getRenderer().domElement );
+// Texture
+const texture = new THREE.TextureLoader().load('assets/cassis2.jpg');
+texture.wrapS = THREE.RepeatWrapping;
+texture.repeat.x = -1;
+
+const material = new THREE.MeshBasicMaterial( {
+    side: THREE.DoubleSide,
+    map: texture
+} );
+const sphere = new THREE.Mesh( geometry, material );
+scene.add( sphere );
+
+function animate () {
+    requestAnimationFrame(animate);
+
+    controls.update();
+
+    renderer.render(scene, camera);
+}
+
+function onResize() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+}
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+
+document.body.appendChild( renderer.domElement );
+
+animate();
+
+window.addEventListener('resize', onResize);
